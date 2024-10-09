@@ -7,9 +7,18 @@
 <table>
   <thead>
     <tr>
-      <th><%= sortable "title", "Title" %></th>
-      <th><%= sortable "rating", "Rating" %></th>
-      <th><%= sortable "release_date", "Release Date" %></th>
+      <th style="<%= 'background-color: lightblue;' if session[:sort] == 'title' %>">
+        <%= sortable "title", "Title" %>
+        <%= session[:sort] == 'title' ? (session[:direction] == 'asc' ? ' ▲' : ' ▼') : '' %>
+      </th>
+      <th style="<%= 'background-color: lightblue;' if session[:sort] == 'rating' %>">
+        <%= sortable "rating", "Rating" %>
+        <%= session[:sort] == 'rating' ? (session[:direction] == 'asc' ? ' ▲' : ' ▼') : '' %>
+      </th>
+      <th style="<%= 'background-color: lightblue;' if session[:sort] == 'release_date' %>">
+        <%= sortable "release_date", "Release Date" %>
+        <%= session[:sort] == 'release_date' ? (session[:direction] == 'asc' ? ' ▲' : ' ▼') : '' %>
+      </th>
       <th>Actions</th>
     </tr>
   </thead>
