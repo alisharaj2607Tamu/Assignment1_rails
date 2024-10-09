@@ -3,7 +3,16 @@ class MoviesController < ApplicationController
 
   # GET /movies or /movies.json
   def index
-    @movies = Movie.all
+    # Fetch the column and direction from the params or default to 'title' and 'asc'
+    sort_column = %w[title rating release_date].include?(params[:sort]) ? params[:sort] : 'title'
+    sort_direction = %w[asc desc].include?(params[:direction]) ? params[:direction] : 'asc'
+
+    # Store sorting preferences in session to persist across requests
+    session[:sort] = sort_column
+    session[:direction] = sort_direction
+
+    # Use ActiveRecord to order the movies based on the sorting preferences
+    @movies = Movie.order("#{sort_column} #{sort_direction}")
   end
 
   # GET /movies/1 or /movies/1.json

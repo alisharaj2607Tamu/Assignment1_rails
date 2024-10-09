@@ -4,19 +4,16 @@
 
 <h1>Movies</h1>
 
-<!-- Table for Movies -->
 <table>
-  <!-- Table Header -->
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Rating</th>
-      <th>Release Date</th>
+      <th><%= sortable "title", "Title" %></th>
+      <th><%= sortable "rating", "Rating" %></th>
+      <th><%= sortable "release_date", "Release Date" %></th>
       <th>Actions</th>
     </tr>
   </thead>
 
-  <!-- Table Body -->
   <tbody>
     <% @movies.each do |movie| %>
       <tr>
@@ -32,7 +29,6 @@
     <% end %>
   </tbody>
 
-  <!-- Optional Table Footer -->
   <tfoot>
     <tr>
       <td colspan="4">Total Movies: <%= @movies.count %></td>
@@ -40,5 +36,4 @@
   </tfoot>
 </table>
 
-<!-- Link to create a new movie -->
 <%= link_to "New movie", new_movie_path %>
